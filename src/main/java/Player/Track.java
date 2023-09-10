@@ -1,6 +1,11 @@
 package Player;
 
 import com.mpatric.mp3agic.*;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Track {
@@ -79,5 +84,36 @@ public class Track {
     @Override
     public String toString(){
         return "Title:"+ this.title+"\n"+"Artist:"+ this.artist+"\n"+"Album:"+ this.album+"\n"+"Duration:"+ this.duration+"\n";
+    }
+
+    public void play() throws IOException{
+        try {
+            // Specify the path to your MP3 file
+            String filePath = this.filePath;
+            // Create a FileInputStream to read the MP3 file
+            FileInputStream fis = new FileInputStream(filePath);
+            // Create a new Player instance to play the MP3
+            Player player = new Player(fis);
+            // Start playing the MP3 in a new thread
+            Thread playerThread = new Thread(() -> {
+                try {
+                    player.play();
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            playerThread.start();
+
+            // Wait for the playback to finish
+            playerThread.join();
+
+            // Clean up resources
+            player.close();
+            fis.close();
+        } catch (FileNotFoundException | InterruptedException | JavaLayerException e) {
+            e.printStackTrace();
+        }
+
     }
 }
