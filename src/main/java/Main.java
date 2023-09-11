@@ -8,43 +8,33 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scnr = new Scanner(System.in);
 
-
         TrackList trackList = new TrackList();
         System.out.println("Please enter a filepath");
-        String bruh = scnr.nextLine();
-
-        ArrayList<Track> tracks = trackList.fetchFiles(bruh);
-
-        System.out.println(tracks);
-        System.out.println("Select a track to play");
-
-//        int trackID = scnr.nextInt();
-//        tracks.get(trackID).play();
+        String fp = scnr.nextLine();
+        ArrayList<Track> tracks = trackList.fetchFiles(fp);
 
         System.out.println("Search by title: ");
         String search = scnr.nextLine();
 
         ArrayList<Track> results = new ArrayList<Track>();
 
-        for (int i = 0; i < tracks.size(); i++) {
-            if(search.equals(tracks.get(i).getTitle())){
-                results.add(tracks.get(i));
+        for (Track track : tracks) {
+            if (search.equalsIgnoreCase(track.getTitle())) {
+                results.add(track);
             }
         }
 
         if(results.size() == 1){
+            System.out.println("Now playing: "+"\n\n"+results.get(0).toString());
             results.get(0).play();
         }
-
         else{
             System.out.println("Select a song to play:");
             System.out.println(results);
-            int trackID = scnr.nextInt();
-            results.get(trackID-1).play();
+            int trackID = scnr.nextInt()-1;
+            System.out.println("Now playing: "+"\n\n"+results.get(trackID).toString());
+            results.get(trackID).play();
         }
-
-
-
 
     }
 }
