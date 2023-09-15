@@ -13,6 +13,9 @@ public class Main {
         String fp = scnr.nextLine();
         ArrayList<Track> tracks = trackList.fetchFiles(fp);
 
+        System.out.println(tracks);
+
+
         System.out.println("Search by title: ");
         String search = scnr.nextLine();
 
@@ -23,6 +26,7 @@ public class Main {
                 results.add(track);
             }
         }
+
 
         if(results.size() == 1){
             System.out.println("Now playing: "+"\n\n"+results.get(0).toString());
