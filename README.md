@@ -1,11 +1,13 @@
 # 9StrobeMusicPLayer
 Local File Music Player
 
-Currently only supports MP3
-<This is a work in progress>
+```diff
++ Currently only supports MP3 files
++ This is a work in progress
+```
 
-Future Plans: 
-  Add a GUI
-  Add API Calls to retrieve song info and the song itself
-  Import playlists from other apps
+Future Plans: <br>
+  - Add a GUI <br>
+  - Add API Calls to retrieve song info and the song itself <br>
+  - Import playlists from other apps <br>
 
