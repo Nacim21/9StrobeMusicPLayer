@@ -2,6 +2,7 @@ import Player.Track;
 import UI.TrackList;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
         TrackList trackList = new TrackList();
         System.out.println("Please enter a filepath");
         String fp = scnr.nextLine();
-        ArrayList<Track> tracks = trackList.fetchFiles(fp);
+        LinkedList<Track> tracks = trackList.fetchFiles(fp);
 
         System.out.println(tracks);
 
